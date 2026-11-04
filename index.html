@@ -22,13 +22,12 @@
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preload" href="Proposal.mp3" as="audio" type="audio/mpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@400;600&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
 :root{
-  --vh:100dvh;
+  --vh:100vh;
   --blue:#B9D9F2; --yellow:#F8E6A6; --violet:#301A3D; --gold:#D7B56D; --forest:#304C3C;
   --rose:#ff9cbc; --cyan:#9fe7ff;
   --st:env(safe-area-inset-top,0px); --sb:env(safe-area-inset-bottom,0px);
@@ -39,7 +38,9 @@
   --sans:"DM Sans",system-ui,-apple-system,sans-serif;
   --script:"Pinyon Script","Snell Roundhand","Apple Chancery",cursive;
 }
+@supports (height:100dvh){:root{--vh:100dvh}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#140a1c;color:#fff7fb;font-family:var(--sans);-webkit-font-smoothing:antialiased;overscroll-behavior:none}
 body{position:fixed;inset:0;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 button,a{font:inherit;color:inherit}
@@ -325,7 +326,7 @@ button{cursor:pointer;border:0;background:none;padding:0}
 .toast.show{opacity:1;translate:-50% 0}
 .sheet{position:absolute;z-index:30;inset:0;background:rgba(14,7,22,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:calc(var(--st) + 64px) 26px calc(var(--sb) + 40px);opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s linear .4s;color:#fff7fb;font-family:var(--serif);font-size:19px;line-height:1.45;text-align:center;-webkit-user-select:text;user-select:text}
 .sheet.show{opacity:1;visibility:visible;transition:opacity .4s,visibility 0s}
-.sheet h3{font-family:var(--caps);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#D7B56D;margin:26px 0 8px;font-weight:500}
+.sheet h3{font-family:var(--caps);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#D7B56D;margin:26px 0 8px;font-weight:600}
 .sheet p{margin:0}
 .sheet small{display:block;font-family:var(--sans);font-size:12px;font-style:italic;color:rgba(255,247,251,.55)}
 .sheet .close{position:fixed;top:calc(var(--st) + 10px);right:14px}
@@ -333,7 +334,7 @@ button{cursor:pointer;border:0;background:none;padding:0}
 .tarot-modal .tcard{width:min(78vw,300px);padding:26px 22px;border-radius:22px;background:linear-gradient(180deg,#25122f,#160a1e);border:1px solid rgba(215,181,109,.6);box-shadow:0 0 60px rgba(215,181,109,.3);color:#fff7fb;transform:rotateY(90deg);transition:transform 1s var(--ease)}
 .tarot-modal.show .tcard{transform:none}
 .tcard svg{width:110px;height:auto;display:block;margin:0 auto 12px}
-.tcard h4{font-family:var(--caps);font-weight:500;letter-spacing:.24em;font-size:13px;color:#D7B56D;margin:0 0 10px;text-transform:uppercase}
+.tcard h4{font-family:var(--caps);font-weight:600;letter-spacing:.24em;font-size:13px;color:#D7B56D;margin:0 0 10px;text-transform:uppercase}
 .tcard p{font-family:var(--serif);font-size:17px;line-height:1.4;margin:0}
 .manual-nav{position:absolute;z-index:9;left:0;right:0;bottom:calc(var(--sb) + 26px);display:none;justify-content:center;gap:14px}
 .manual .manual-nav{display:flex}
@@ -419,7 +420,13 @@ button{cursor:pointer;border:0;background:none;padding:0}
 }
 
 /* ---------- characters: Monarch & Kétery ---------- */
-.app{--ch:clamp(56px,12vh,126px)}
+.app{--ch:clamp(52px,10.6vh,118px)}
+@media (orientation:portrait){
+  .lyrics{--ly-y:68%}
+  .app[data-scene="3"] .lyrics,.app[data-scene="6"] .lyrics{--ly-y:72%}
+  .app[data-scene="1"] .lyrics{--ly-y:72%}
+  .app[data-scene="5"] .lyrics{--ly-y:58%}
+}
 .cast{position:absolute;left:0;right:0;bottom:calc(var(--sb) + 24px);height:var(--ch);display:flex;justify-content:center;align-items:flex-end;gap:clamp(6px,4vw,40px);pointer-events:none;z-index:2;transition:opacity 1s var(--ease)}
 .cast.split{justify-content:space-between;padding:0 clamp(18px,9vw,140px)}
 .cast.near{justify-content:center;gap:clamp(120px,40vw,330px)}
@@ -548,6 +555,11 @@ button{cursor:pointer;border:0;background:none;padding:0}
   .band{top:calc(var(--st) + 62px);bottom:31%}
   .cast{bottom:calc(var(--sb) + 18px)}
   .app[data-scene="5"] .lyrics{--ly-y:57%}
+}
+@supports not (aspect-ratio:1){
+  .tree{width:min(92vw,70vh)}.falls{width:min(80vw,66vh)}
+  .ch{width:calc(var(--ch)*.484)}.fig.duo .ch{width:calc(var(--ch)*.484)}
+  .sigil{height:min(86vw,560px)}.sun{height:min(70vw,420px)}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.6s!important;transition-delay:0s!important}
@@ -884,7 +896,8 @@ const DEBUG=Q.get('debug')==='1';
 const COARSE=matchMedia('(pointer: coarse)').matches;
 const IOS=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
 // low-end phones (mostly older Androids) start in lite mode; everyone else steps down automatically if frames drop
-const LOWEND=COARSE&&!IOS&&(((navigator.hardwareConcurrency||8)<=4)||((navigator.deviceMemory||8)<=3));
+const NET=navigator.connection||{};
+const LOWEND=(COARSE&&!IOS&&(((navigator.hardwareConcurrency||8)<=4)||((navigator.deviceMemory||8)<=3)))||!!NET.saveData||/(^|-)2g$/.test(NET.effectiveType||'');
 const rmq=matchMedia('(prefers-reduced-motion: reduce)');
 let REDUCED=rmq.matches; (rmq.addEventListener?rmq.addEventListener('change',e=>REDUCED=e.matches):0);
 if(IOS) app.classList.add('is-ios');
@@ -1165,11 +1178,11 @@ function tick(now){
   if(state.scene===1)moveTraveler(now/1000);
   const k=level(t,dt);
   if(now-pulseT>70){pulseT=now;const v=k.toFixed(2);lyWrap.style.setProperty('--pulse',v);if(state.scene===5)treeLights.style.setProperty('--pulse',v);}
-  FX.step(dt,now/1000,k);
+  fxAcc+=dt;if(fxAcc>=.0155||dt>=.0155){FX.step(fxAcc,now/1000,k);fxAcc=0;}
   moments(now/1000,dt);
   if(DEBUG)dbgUpdate(t);
 }
-let qual=LOWEND?.65:1,qAcc=0,qN=0,nextSpark=0,nextHeart=0;
+let fxAcc=0,qual=LOWEND?.65:1,qAcc=0,qN=0,nextSpark=0,nextHeart=0;
 function applyQuality(){FX.setQuality(qual);app.classList.toggle('lite',qual<.8);}
 function moments(ts,dt){
   if(state.started&&!audio.paused){qAcc+=dt;qN++;if(qN>=90){const avg=qAcc/qN;qAcc=0;qN=0;if(avg>.026&&qual>.45){qual=Math.max(.45,qual*.75);applyQuality();}}}
@@ -1184,6 +1197,7 @@ const enterBtn=$('#enterBtn'),loader=$('#loader'),retry=$('#retry'),resume=$('#r
 let ready=false;
 function setReady(){if(ready)return;ready=true;enterBtn.disabled=false;loader.classList.add('done');}
 ['canplaythrough','canplay','loadeddata'].forEach(ev=>audio.addEventListener(ev,setReady));
+audio.addEventListener('progress',()=>{if(ready||!audio.duration||!audio.buffered.length)return;const pc=Math.min(99,Math.round(audio.buffered.end(audio.buffered.length-1)/audio.duration*100));loader.firstChild.textContent='Preparing your song · '+pc+'% ';});
 if(audio.readyState>=3)setReady();
 setTimeout(setReady,IOS?1500:4500);
 let toastT=0;function toast(msg,ms){toastEl.textContent=msg;toastEl.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>toastEl.classList.remove('show'),ms||2600);}
@@ -1197,6 +1211,10 @@ function start(){
   setScene(1);
 }
 enterBtn.addEventListener('click',start);
+if('mediaSession' in navigator){try{
+  navigator.mediaSession.metadata=new MediaMetadata({title:'Kétery',artist:'Monarch',album:'A little universe, made only for you',artwork:[{src:'apple-touch-icon.png',sizes:'180x180',type:'image/png'}]});
+  navigator.mediaSession.setActionHandler('play',()=>play());navigator.mediaSession.setActionHandler('pause',()=>audio.pause());
+}catch(e){}}
 $('#retryBtn').addEventListener('click',()=>{retry.classList.remove('show');play();});
 $('#noMusicBtn').addEventListener('click',()=>{retry.classList.remove('show');enterManual();});
 $('#resumeBtn').addEventListener('click',()=>{resume.classList.remove('show');state.resumeNeeded=false;play();});
