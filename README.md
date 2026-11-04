@@ -24,7 +24,7 @@ Everything follows `audio.currentTime` in one `requestAnimationFrame` loop:
 
 | Time (s) | Section | Scene |
 | --- | --- | --- |
-| 0–14 | Intro | Two worlds: Agra ↔ Brasil |
+| 0–14 | Intro | Two worlds: Agra, India ↔ São Paulo, Brazil |
 | 14–26.6 | Verse | Witchy universe (caos, tarot, crystals) |
 | 26.6–40 | Verse | Pastel dreamland (side quests) |
 | 40–47 | Pre-chorus | Magical library |
@@ -49,6 +49,28 @@ Other timing constants live right below it: `SECTIONS`, `QUESTION_T`, `RAIN_STOP
 - Space play/pause · M mute · R restart · ←/→ previous/next chapter (while paused).
 - Swipe changes chapters while paused.
 - If the MP3 can't load, the site switches to a read-through mode with ‹ › buttons.
+
+## Characters & their moments
+Monarch and Kétery appear as soft, backlit silhouettes, built in SVG inside `index.html` (`buildCast`):
+
+| Chapter | Moment |
+| --- | --- |
+| Two worlds | Monarch waves from Agra, Kétery waves back from São Paulo. A heart travels between them |
+| Your magic | Kétery as a little witch, with a hat and a wand that throws sparkles |
+| Side quests | Monarch the fixer with his wrench, while Kétery laughs (“haha”) |
+| Library | Both reading by candlelight, pages flipping |
+| Chorus | Holding hands under the tree, the two dogs and two cats around them (tails wagging) |
+| Bridge | Monarch holds an umbrella over her in the rain. When the rainbow appears, it closes and she points at it |
+| Dawn | Monarch offers a glowing heart |
+| YES | Both jump for joy with the pets, hearts rising |
+
+Extra motion: shooting stars, butterflies, birds at dawn, rain splashes, and a slow camera drift.
+
+## Performance on different phones
+- Older or low-memory Android phones start in **lite mode**. It uses fewer particles, a lower canvas resolution, and no blur or glow filters.
+- Every device measures its own frame rate while the song plays and steps quality down automatically if it drops.
+- Layouts are tested at 320×568, 360×640, 375×667, 360×780, 390×844, 412×915, 430×932, iPad portrait and landscape, 740×360 landscape, and desktop.
+- On portrait phones, the side-quest and postcard cards take turns instead of crowding the screen.
 
 ## Hidden easter eggs
 Tap a tarot card · tap “caos” · tap the sleeping pets · tap “Amata Lux” (or type `amatalux`).
