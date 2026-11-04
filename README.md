@@ -10,7 +10,6 @@ A cinematic, music-synchronised proposal site, built around an original song
 | `Proposal.mp3` | The song (drives the entire timeline) |
 | `og.png` | 1200×630 link-preview image (WhatsApp / iMessage) |
 | `icon.svg`, `favicon-32.png`, `apple-touch-icon.png` | Icons |
-| `v5.html` | Backup of the previous V5 site |
 
 ## Deploy (GitHub Pages)
 1. Merge this branch into `main`.
